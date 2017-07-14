@@ -1,0 +1,18 @@
+Side scroller
+Auto move right
+Actions:
+  Jump / Fast Fall [A]:
+    If player is grounded:
+      Sets player horizontal speed to 0
+    Else, if player is midair and has a double jump:
+      Gains small vertical boost while maintaining momentum
+      If jumped immediately after hitting an enemy with a dash, jumps forward with dash speed
+      Else, jumps forward with regular horizontal speed
+    The player's double jump is refreshed upon touching the ground, and can only be used once until refreshed again
+    Otherwise, set vertical speed to maximum downwards and acts as an attack
+    If a player hits an enemy while fast falling, the enemy is destroyed and the player receives a small vertical boost
+  Dash [X]:
+    If the player is grounded or has air dash
+    Increases player horizontal speed
+    Sets player vertical speed to 0
+    If a player connects with an enemy mid-dash, the enemy is destroyed and both the dash and the double jump are refreshed
