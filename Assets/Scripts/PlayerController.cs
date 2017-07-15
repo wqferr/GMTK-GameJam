@@ -90,14 +90,6 @@ public class PlayerController : MonoBehaviour
 
 			break;
 		case PlayerState.RISING: //jump
-			
-			if (currentState == PlayerState.GROUNDED || currentState == PlayerState.DASHING && previousState == PlayerState.GROUNDED)
-				JumpTo (groundJumpPeak, groundJumpDuration);
-			else {
-				//we might need other verifications for currentState before jumping
-				JumpTo (transform.position.y + airJumpHeight, airJumpDuration);
-			}
-
 			if (currentState != PlayerState.DASHING) {
 				hspeed = jumpHSpeed;
 				accelerating = true;
@@ -139,9 +131,13 @@ public class PlayerController : MonoBehaviour
 	{
 		if (Input.GetButtonDown ("Fire1"))
 		{
-			if(hasJump)
-				SwitchState (PlayerState.RISING);
-			else
+			if(hasJump) {
+				//SwitchState (PlayerState.RISING);
+				if (currentState == PlayerState.GROUNDED || currentState == PlayerState.DASHING && previousState == PlayerState.GROUNDED)
+					JumpTo (groundJumpPeak, groundJumpDuration);
+				else
+					JumpTo (transform.position.y + airJumpHeight, airJumpDuration);
+			} else
 				SwitchState (PlayerState.FASTFALLING);
 		}
 
@@ -224,6 +220,7 @@ public class PlayerController : MonoBehaviour
 
 	void JumpTo(float peak, float duration)
 	{
+		SwitchState (PlayerState.RISING);
 		targetHeight = peak;
 		initialHeight = transform.position.y;
 
@@ -273,7 +270,7 @@ public class PlayerController : MonoBehaviour
 			RefreshAbilities();
 			Destroy (other.gameObject);
 			score.Hit ();
-			// TODO implement canceling (CONSIDER MOMENTUM)
+			// TODO maybe increase dash time?
 		}
 		else if (currentState == PlayerState.FASTFALLING)
 		{

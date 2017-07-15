@@ -456,7 +456,7 @@ MonoBehaviour:
   groundJumpDuration: 1
   airJumpHeight: 4
   airJumpDuration: 1
-  bounceHeight: 1
+  bounceHeight: 2
   bounceDuration: 1
   dashDuration: 0.5
   jumpDuration: 1
