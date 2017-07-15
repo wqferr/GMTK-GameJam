@@ -39,6 +39,7 @@ public class PlayerController : MonoBehaviour
 	public float jumpHSpeed;
 	public float fallHSpeed;
 
+	[HideInInspector]
 	public float hspeed;
 	public float hacc;
 	public bool accelerating;

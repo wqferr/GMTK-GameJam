@@ -6,7 +6,7 @@ public class MovingObject : MonoBehaviour {
 
 	public PlayerController player;
 
-	public void FixedUpdate () {
+	public virtual void FixedUpdate () {
 		transform.Translate (Vector3.left * player.hspeed * Time.fixedDeltaTime);
 	}
 }
