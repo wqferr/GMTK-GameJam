@@ -6,7 +6,9 @@ public class EnemySpawner : MonoBehaviour {
 
 	public float spawnRadius;
 	public GameObject enemyPrefab;
+	public PlayerController player;
 	public float enemySpeed;
+	public float dashSpeed;
 	public float despawnX;
 
 	public float spawnInterval;
@@ -32,6 +34,8 @@ public class EnemySpawner : MonoBehaviour {
 		obj.transform.parent = transform;
 		obj.transform.position = transform.position;
 		obj.transform.Translate(Vector3.up * r);
-		obj.GetComponent<EnemyController> ().spawner = this;
+		var controller = obj.GetComponent<EnemyController>();
+		controller.spawner = this;
+		controller.player = player;
 	}
 }
