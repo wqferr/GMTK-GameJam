@@ -29,8 +29,6 @@ public class PlayerController : MonoBehaviour
 	private PlayerState currentState = PlayerState.GROUNDED;
 	private PlayerState previousState = PlayerState.GROUNDED;
 
-	public uint health;
-
 	private bool hasJump;
 	private bool hasDash;
 
@@ -314,9 +312,6 @@ public class PlayerController : MonoBehaviour
 			JumpTo (transform.position.y + bounceHeight, bounceDuration);
 			hasDash = true;
 			score.Hit ();
-		} else {
-			health--;
-			// TODO death
 		}
 		else 
 		{
