@@ -361,7 +361,6 @@ MonoBehaviour:
   jumpDuration: 0
   fallGravity: 5
   maxFallSpeed: -15
-  fastFallSpeed: -20
 --- !u!50 &1561767652
 Rigidbody2D:
   serializedVersion: 4
