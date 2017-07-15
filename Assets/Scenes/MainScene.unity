@@ -349,14 +349,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2efb6e25583381e44a001f27ad9f30be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnRadius: 3
   enemyPrefab: {fileID: 1990567570332152, guid: d71d077f2a224b14ebce6e48c79b2ecf,
     type: 2}
   player: {fileID: 1561767651}
-  enemySpeed: 5
-  dashSpeed: 7.5
+  spawnRadius: 3
   despawnX: -14
-  spawnInterval: 2
+  baseSpawnInterval: 2
 --- !u!1 &1561767648
 GameObject:
   m_ObjectHideFlags: 0
