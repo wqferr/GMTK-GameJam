@@ -27,7 +27,6 @@ public class PlayerController : MonoBehaviour {
 	private float fallingSpeed;
 	public float fallGravity;
 	public float maxFallSpeed;
-	public float fastFallSpeed;
 
 	private float groundHeight;
 
@@ -120,7 +119,7 @@ public class PlayerController : MonoBehaviour {
 	void StartFastFalling() {
 		StartFalling ();
 		fastFalling = true;
-		fallingSpeed = fastFallSpeed;
+		fallingSpeed = maxFallSpeed;
 	}
 
 	void RefreshAbilities() {
