@@ -354,8 +354,8 @@ MonoBehaviour:
   rb: {fileID: 1561767652}
   renderer: {fileID: 1561767649}
   normalSprite: {fileID: 21300000, guid: 2c7cc9b7024dbec40917c54151843f80, type: 3}
-  dashSprite: {fileID: 21300000, guid: 04dfd53974b62c94b8a60ca7ef37f394, type: 3}
-  fastFallSprite: {fileID: 21300000, guid: 482af246418af9045b6b24faae0637d4, type: 3}
+  dashSprite: {fileID: 21300000, guid: 482af246418af9045b6b24faae0637d4, type: 3}
+  fastFallSprite: {fileID: 21300000, guid: 04dfd53974b62c94b8a60ca7ef37f394, type: 3}
   goingUp: 0
   goingDown: 0
   airborne: 0
