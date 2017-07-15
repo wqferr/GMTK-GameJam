@@ -402,18 +402,13 @@ MonoBehaviour:
   goingUp: 0
   goingDown: 0
   airborne: 0
-  timeJumping: 0
-  jumpDuration: 0
-  timeFalling: 0
-  fallDuration: 0
-  fallingSpeed: 0
-  fallGravity: 5
-  maxFallSpeed: -15
-  groundHeight: 0
-  initialHeight: 0
-  targetHeight: 0
   jumpPeak: 0
   airJumpHeight: 4
+  dashDuration: 0
+  jumpDuration: 0
+  fallGravity: 5
+  maxFallSpeed: -15
+  fastFallSpeed: -20
 --- !u!50 &1561767652
 Rigidbody2D:
   serializedVersion: 4

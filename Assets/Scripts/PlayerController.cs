@@ -11,27 +11,32 @@ public class PlayerController : MonoBehaviour {
 	public bool goingDown;
 	public bool airborne;
 
-	public bool hasAirJump;
-	public bool hasAirDash;
-	public bool fastFalling;
-
-
-	public float timeJumping;
-	public float jumpDuration;
-
-	public float fallingSpeed;
-	public float fallGravity;
-	public float maxFallSpeed;
-
-	public float groundHeight;
-
-
-	// jumping interpolation
-	public float initialHeight;
-	public float targetHeight;
+	private bool hasAirJump;
+	private bool hasAirDash;
+	private bool fastFalling;
 
 	public float jumpPeak;
 	public float airJumpHeight;
+
+	private float timeDashing;
+	public float dashDuration;
+
+	private float timeJumping;
+	public float jumpDuration;
+
+	private float fallingSpeed;
+	public float fallGravity;
+	public float maxFallSpeed;
+	public float fastFallSpeed;
+
+	private float groundHeight;
+
+
+	// jumping interpolation
+	private float initialHeight;
+	private float targetHeight;
+
+
 
 	// Use this for initialization
 	void Start () {
@@ -43,10 +48,16 @@ public class PlayerController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (Input.GetButtonDown ("Fire1")) {
-			if (airborne)
-				JumpTo(transform.position.y + airJumpHeight, 1.0f);
-			else
-				JumpTo(jumpPeak, 0.8f);
+			if (airborne) {
+				if (hasAirJump) {
+					hasAirJump = false;
+					JumpTo (transform.position.y + airJumpHeight, 1.0f);
+				} else if (!fastFalling) {
+					StartFastFalling ();
+				}
+			} else {
+				JumpTo (jumpPeak, 0.8f);
+			}
 		}
 	}
 
@@ -99,6 +110,12 @@ public class PlayerController : MonoBehaviour {
 		goingUp = false;
 		goingDown = true;
 		fallingSpeed = 0;
+	}
+
+	void StartFastFalling() {
+		StartFalling ();
+		fastFalling = true;
+		fallingSpeed = fastFallSpeed;
 	}
 
 	void RefreshAbilities() {
