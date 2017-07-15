@@ -51,14 +51,18 @@ public class ScoreManager : MonoBehaviour
 
 		if (PlayerPrefs.HasKey ("n")) {
 			int n = PlayerPrefs.GetInt("n");
+			int i;
+
 			Score[] oldScores = GetHighScores (n);
 
 			if (n < MAX_N)
 				n++;
 			scores = new Score[n];
+			for (i = 0; i < n - 1; i++)
+				scores [i] = oldScores[i];
 
 			// Sorted insert
-			int i = n-1;
+			i = n-1;
 			while (i >= 0 && scores [i].dist < s.dist) {
 				scores [i + 1] = scores [i];
 				i--;
