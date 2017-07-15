@@ -67,6 +67,8 @@ public class PlayerController : MonoBehaviour {
 					goingDown = false;
 				} else {
 					fallingSpeed -= fallGravity * fallGravity * Time.fixedDeltaTime;
+					if (fallingSpeed < maxFallSpeed)
+						fallingSpeed = maxFallSpeed;
 					transform.Translate (new Vector3 (0.0f, fallingSpeed, 0.0f) * Time.fixedDeltaTime);
 				}
 			}
