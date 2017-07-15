@@ -9,6 +9,8 @@ public class EnemyController : MovingObject {
 	// Update is called once per frame
 	public override void FixedUpdate ()
 	{
+		if (spawner.gameController.CurrentState != GameState.RUNNING)
+			return;
 		base.FixedUpdate ();
 		if (transform.position.x < spawner.despawnX)
 			Destroy (gameObject);

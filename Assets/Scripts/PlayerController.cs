@@ -14,6 +14,8 @@ public enum PlayerState
 public class PlayerController : MonoBehaviour
 {
 	#region REFERENCES
+	public GameController gameController;
+
 	public Rigidbody2D rb;
 	new public SpriteRenderer renderer;
 	public ScoreManager score;
@@ -34,11 +36,6 @@ public class PlayerController : MonoBehaviour
 	private float timeJumping;
 	private float groundHeight;
 
-	public float normalHSpeed;
-	public float dashHSpeed;
-	public float jumpHSpeed;
-	public float fallHSpeed;
-
 	[HideInInspector]
 	public float hspeed;
 	public float hacc;
@@ -48,7 +45,16 @@ public class PlayerController : MonoBehaviour
 	private float initialHeight;
 	private float targetHeight;
 
+	private int health;
+
 	#region TWEAKABLES
+	public int startingHealth;
+
+	public float normalHSpeed;
+	public float dashHSpeed;
+	public float jumpHSpeed;
+	public float fallHSpeed;
+
 	public float groundJumpPeak;
 	public float groundJumpDuration;
 	public float airJumpHeight;
@@ -117,9 +123,31 @@ public class PlayerController : MonoBehaviour
 		currentState = nextState;
 	}
 
+	public void Die()
+	{
+		//PlayDeathAnimation
+		gameController.PlayerDied();
+	}
+
+	public void DecreaseHealth(int amount)
+	{
+		health -= amount;
+		Debug.Log ("Health :" + health);
+		if(health <= 0)
+			Die ();
+	}
+
+	public void IncreaseHealth(int amount)
+	{
+		health += amount;
+		if(health > startingHealth)
+			startingHealth = health;
+	}
+
 	// Use this for initialization
 	void Start ()
 	{
+		health = startingHealth;
 		groundHeight = transform.position.y;
 		RefreshAbilities ();
 		renderer.sprite = normalSprite;
@@ -129,6 +157,9 @@ public class PlayerController : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
+		if (gameController.CurrentState != GameState.RUNNING)
+			return;
+
 		if (Input.GetButtonDown ("Fire1"))
 		{
 			if(hasJump) {
@@ -150,7 +181,11 @@ public class PlayerController : MonoBehaviour
 
 	void FixedUpdate()
 	{
-		if (accelerating) {
+		if (gameController.CurrentState != GameState.RUNNING)
+			return;
+
+		if (accelerating)
+		{
 			hspeed += hacc * Time.fixedDeltaTime;
 			if (hspeed >= normalHSpeed) {
 				hspeed = normalHSpeed;
@@ -278,6 +313,11 @@ public class PlayerController : MonoBehaviour
 			JumpTo(transform.position.y + bounceHeight, bounceDuration);
 			hasDash = true;
 			score.Hit ();
+		}
+		else 
+		{
+			//play hit animation
+			DecreaseHealth(1);
 		}
 	}
 }

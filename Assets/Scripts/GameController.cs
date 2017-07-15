@@ -17,6 +17,11 @@ public class GameController : MonoBehaviour {
 	private GameState currentState = GameState.START;
 	private GameState previousState = GameState.NULL;
 
+	public GameState CurrentState 
+	{
+		get { return currentState; }
+	}
+
 	void SwitchState(GameState nextState)
 	{
 		previousState = currentState;
@@ -28,18 +33,34 @@ public class GameController : MonoBehaviour {
 		switch(currentState)
 		{
 		case GameState.START:
+			SwitchState (GameState.RUNNING);
 			break;
 		case GameState.RESTART:
+			SwitchState (GameState.START);
 			break;
 		case GameState.PAUSED:
 			break;
 		case GameState.RUNNING:
 			break;
 		case GameState.DIE:
+			//Show Popup
 			break;
 		default:
 			break;
 		}
+	}
+
+	public void PlayerDied()
+	{
+		SwitchState (GameState.DIE);
+	}
+
+	void BasicInputs()
+	{
+		if(Input.GetKeyDown(KeyCode.Escape) && currentState == GameState.RUNNING)
+			SwitchState (GameState.PAUSED);
+		else if(Input.GetKeyDown(KeyCode.Escape) && currentState == GameState.PAUSED)
+			SwitchState (GameState.RUNNING);
 	}
 
 	// Use this for initialization
@@ -51,5 +72,6 @@ public class GameController : MonoBehaviour {
 	void Update ()
 	{
 		GameStateMachine();
+		BasicInputs ();
 	}
 }

@@ -6,6 +6,7 @@ public class EnemySpawner : MonoBehaviour {
 	
 	public GameObject enemyPrefab;
 	public PlayerController player;
+	public GameController gameController;
 
 	public float spawnRadius;
 	public float despawnX;
@@ -19,7 +20,11 @@ public class EnemySpawner : MonoBehaviour {
 	}
 
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+	{
+		if (gameController.CurrentState != GameState.RUNNING)
+			return;
+
 		timeToSpawn -= Time.deltaTime;
 		if (timeToSpawn < 0) {
 			timeToSpawn = baseSpawnInterval * (Random.value/4 + 1);
