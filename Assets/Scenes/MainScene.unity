@@ -408,11 +408,12 @@ MonoBehaviour:
   fallDuration: 0
   fallingSpeed: 0
   fallGravity: 5
-  maxFallSpeed: 0
+  maxFallSpeed: -15
+  groundHeight: 0
   initialHeight: 0
   targetHeight: 0
   jumpPeak: 0
-  airJumpHeight: 0
+  airJumpHeight: 4
 --- !u!50 &1561767652
 Rigidbody2D:
   serializedVersion: 4
