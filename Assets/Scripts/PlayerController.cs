@@ -20,6 +20,8 @@ public class PlayerController : MonoBehaviour {
 	public float fallGravity;
 	public float maxFallSpeed;
 
+	public float groundHeight;
+
 	// jumping
 	public float initialHeight;
 	public float targetHeight;
@@ -29,6 +31,7 @@ public class PlayerController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		groundHeight = transform.position.y;
 	}
 
 	// Update is called once per frame
@@ -59,8 +62,13 @@ public class PlayerController : MonoBehaviour {
 					);
 				}
 			} else if (goingDown) {
-				fallingSpeed -= fallGravity*fallGravity * Time.fixedDeltaTime;
-				transform.Translate (new Vector3 (0.0f, fallingSpeed, 0.0f) * Time.fixedDeltaTime);
+				if (Mathf.Abs (transform.position.y - groundHeight) < 0.1f) {
+					airborne = false;
+					goingDown = false;
+				} else {
+					fallingSpeed -= fallGravity * fallGravity * Time.fixedDeltaTime;
+					transform.Translate (new Vector3 (0.0f, fallingSpeed, 0.0f) * Time.fixedDeltaTime);
+				}
 			}
 		}
 	}
