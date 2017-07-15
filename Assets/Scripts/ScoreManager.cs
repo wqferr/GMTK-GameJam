@@ -5,10 +5,20 @@ using UnityEngine;
 public class ScoreManager : MonoBehaviour
 {
 
-	public uint combo = 0;
-	public uint maxCombo = 0;
-	
+	public uint combo;
+	public uint maxCombo;
+	public uint enemiesKilled;
+	public float distance;
+
+	public void Start() {
+		combo = 0;
+		maxCombo = 0;
+		enemiesKilled = 0;
+		distance = 0;
+	}
+
 	public void Hit() {
+		enemiesKilled++;
 		combo++;
 	}
 

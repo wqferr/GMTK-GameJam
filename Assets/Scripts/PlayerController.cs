@@ -159,6 +159,8 @@ public class PlayerController : MonoBehaviour
 				accelerating = false;
 			}
 		}
+		score.distance += hspeed * Time.fixedDeltaTime;
+
 		switch(currentState)
 		{
 		case PlayerState.RISING: //jumping
