@@ -23,7 +23,7 @@ public class EnemySpawner : MonoBehaviour {
 	void Update () {
 		timeToSpawn -= Time.deltaTime;
 		if (timeToSpawn < 0) {
-			timeToSpawn = spawnInterval;
+			timeToSpawn = spawnInterval * (Random.value/4 + 1);
 			Spawn ();
 		}
 	}
