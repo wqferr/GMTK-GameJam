@@ -36,7 +36,7 @@ public class PlayerController : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetButtonDown ("Fire1")) { // TODO and grounded
+		if (Input.GetButtonDown ("Fire1") && !airborne) {
 			JumpTo(jumpPeak, 0.8f);
 		}
 	}
