@@ -401,7 +401,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 1561767652}
   renderer: {fileID: 1561767649}
-  spawner: {fileID: 1505754863}
   normalSprite: {fileID: 21300000, guid: 2c7cc9b7024dbec40917c54151843f80, type: 3}
   dashSprite: {fileID: 21300000, guid: 482af246418af9045b6b24faae0637d4, type: 3}
   fastFallSprite: {fileID: 21300000, guid: 04dfd53974b62c94b8a60ca7ef37f394, type: 3}
@@ -413,7 +412,7 @@ MonoBehaviour:
   groundJumpDuration: 1
   airJumpHeight: 4
   airJumpDuration: 1
-  bounceHeight: 0
+  bounceHeight: 1
   bounceDuration: 1
   dashDuration: 0.5
   jumpDuration: 1
@@ -426,7 +425,7 @@ Rigidbody2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1561767648}
-  m_BodyType: 2
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
