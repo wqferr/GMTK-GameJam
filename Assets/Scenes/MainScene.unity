@@ -530,6 +530,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   combo: 0
   maxCombo: 0
+  enemiesKilled: 0
+  distance: 0
 --- !u!1 &1338213577
 GameObject:
   m_ObjectHideFlags: 0
@@ -874,8 +876,8 @@ MonoBehaviour:
   hacc: 50
   accelerating: 0
   startingHealth: 10
-  normalHSpeed: 500
-  dashHSpeed: 1000
+  normalHSpeed: 1000
+  dashHSpeed: 1600
   jumpHSpeed: 3500
   fallHSpeed: 200
   groundJumpPeak: 0
