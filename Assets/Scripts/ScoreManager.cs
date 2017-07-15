@@ -58,9 +58,11 @@ public class ScoreManager : MonoBehaviour
 			scores = new Score[n];
 
 			// Sorted insert
-			int i = n;
-			while (i >= 0 && scores [i].dist < s.dist)
+			int i = n-1;
+			while (i >= 0 && scores [i].dist < s.dist) {
+				scores [i + 1] = scores [i];
 				i--;
+			}
 			if (i < n - 1)
 				scores [i + 1] = s;
 		} else {
