@@ -275,8 +275,9 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1305225425}
+  - component: {fileID: 1305225426}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Score Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -295,6 +296,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1305225426
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1305225424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca174da3583d7a24a8ab7d310cec428f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  combo: 0
+  maxCombo: 0
 --- !u!1 &1505754861
 GameObject:
   m_ObjectHideFlags: 0
@@ -429,9 +443,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 1561767652}
   renderer: {fileID: 1561767649}
+  score: {fileID: 1305225426}
   normalSprite: {fileID: 21300000, guid: 2c7cc9b7024dbec40917c54151843f80, type: 3}
   dashSprite: {fileID: 21300000, guid: 482af246418af9045b6b24faae0637d4, type: 3}
   fastFallSprite: {fileID: 21300000, guid: 04dfd53974b62c94b8a60ca7ef37f394, type: 3}
+  normalHSpeed: 5
+  dashHSpeed: 7.5
+  jumpHSpeed: 3.5
+  fallHSpeed: 2
+  hspeed: 0
+  hacc: 5
+  accelerating: 0
   groundJumpPeak: 0
   groundJumpDuration: 1
   airJumpHeight: 4

@@ -33,7 +33,15 @@ public class PlayerController : MonoBehaviour
 	private float fallingSpeed;
 	private float timeJumping;
 	private float groundHeight;
-	//private bool fastFalling;
+
+	public float normalHSpeed;
+	public float dashHSpeed;
+	public float jumpHSpeed;
+	public float fallHSpeed;
+
+	public float hspeed;
+	public float hacc;
+	public bool accelerating;
 
 	// jumping interpolation
 	private float initialHeight;
@@ -71,6 +79,10 @@ public class PlayerController : MonoBehaviour
 		case PlayerState.GROUNDED:
 			
 			RefreshAbilities ();
+			if (!accelerating && previousState != PlayerState.FASTFALLING)
+				hspeed = normalHSpeed;
+			else
+				accelerating = true;
 			transform.position = new Vector3 (transform.position.x, groundHeight, transform.position.z);
 			renderer.sprite = normalSprite;
 			score.EndCombo ();
@@ -80,12 +92,15 @@ public class PlayerController : MonoBehaviour
 			
 			if (currentState == PlayerState.GROUNDED || currentState == PlayerState.DASHING && previousState == PlayerState.GROUNDED)
 				JumpTo (groundJumpPeak, groundJumpDuration);
-			else
-			{
+			else {
 				//we might need other verifications for currentState before jumping
 				JumpTo (transform.position.y + airJumpHeight, airJumpDuration);
 			}
 
+			if (currentState != PlayerState.DASHING) {
+				hspeed = jumpHSpeed;
+				accelerating = true;
+			}
 			hasJump = false;
 
 			break;
@@ -94,6 +109,7 @@ public class PlayerController : MonoBehaviour
 			break;
 		case PlayerState.FASTFALLING: //fastFall
 			StartFastFalling ();
+			hspeed = fallHSpeed;
 			break;
 		case PlayerState.DASHING:
 			Dash ();
@@ -114,6 +130,7 @@ public class PlayerController : MonoBehaviour
 		groundHeight = transform.position.y;
 		RefreshAbilities ();
 		renderer.sprite = normalSprite;
+		hspeed = normalHSpeed;
 	}
 
 	// Update is called once per frame
@@ -136,6 +153,13 @@ public class PlayerController : MonoBehaviour
 
 	void FixedUpdate()
 	{
+		if (accelerating) {
+			hspeed += hacc * Time.fixedDeltaTime;
+			if (hspeed >= normalHSpeed) {
+				hspeed = normalHSpeed;
+				accelerating = false;
+			}
+		}
 		switch(currentState)
 		{
 		case PlayerState.RISING: //jumping
@@ -212,6 +236,10 @@ public class PlayerController : MonoBehaviour
 	{
 		fallingSpeed = 0;
 		renderer.sprite = normalSprite;
+		if (currentState == PlayerState.DASHING) {
+			accelerating = false;
+			hspeed = normalHSpeed;
+		}
 	}
 
 	void StartFastFalling()
@@ -233,7 +261,8 @@ public class PlayerController : MonoBehaviour
 		timeDashing = 0;
 
 		renderer.sprite = dashSprite;
-		// TODO enable hitbox
+		hspeed = dashHSpeed;
+		accelerating = false;
 	}
 
 	void OnTriggerEnter2D(Collider2D other)
