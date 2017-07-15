@@ -406,10 +406,14 @@ MonoBehaviour:
   goingDown: 0
   airborne: 0
   dashing: 0
-  jumpPeak: 0
+  groundJumpPeak: 0
+  groundJumpDuration: 1
   airJumpHeight: 4
+  airJumpDuration: 1
+  bounceHeight: 0
+  bounceDuration: 1
   dashDuration: 0.5
-  jumpDuration: 0
+  jumpDuration: 1
   fallGravity: 5
   maxFallSpeed: -15
 --- !u!50 &1561767652
@@ -419,7 +423,7 @@ Rigidbody2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1561767648}
-  m_BodyType: 0
+  m_BodyType: 2
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
