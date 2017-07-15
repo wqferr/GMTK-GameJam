@@ -27,6 +27,8 @@ public class PlayerController : MonoBehaviour
 	private PlayerState currentState = PlayerState.GROUNDED;
 	private PlayerState previousState = PlayerState.GROUNDED;
 
+	public uint health;
+
 	private bool hasJump;
 	private bool hasDash;
 
@@ -265,19 +267,19 @@ public class PlayerController : MonoBehaviour
 
 	void OnTriggerEnter2D(Collider2D other)
 	{
-		if (currentState == PlayerState.DASHING)
-		{
-			RefreshAbilities();
+		if (currentState == PlayerState.DASHING) {
+			RefreshAbilities ();
 			Destroy (other.gameObject);
 			score.Hit ();
 			// TODO maybe increase dash time?
-		}
-		else if (currentState == PlayerState.FASTFALLING)
-		{
+		} else if (currentState == PlayerState.FASTFALLING) {
 			Destroy (other.gameObject);
-			JumpTo(transform.position.y + bounceHeight, bounceDuration);
+			JumpTo (transform.position.y + bounceHeight, bounceDuration);
 			hasDash = true;
 			score.Hit ();
+		} else {
+			health--;
+			// TODO death
 		}
 	}
 }
