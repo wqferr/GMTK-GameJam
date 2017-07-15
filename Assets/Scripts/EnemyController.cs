@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyController : MovingObject {
 
 	public EnemySpawner spawner;
+	public GameObject deathFX;
 
 	// Update is called once per frame
 	public override void FixedUpdate ()
@@ -12,7 +13,14 @@ public class EnemyController : MovingObject {
 		if (spawner.gameController.CurrentState != GameState.RUNNING)
 			return;
 		base.FixedUpdate ();
-		if (transform.position.x < spawner.despawnX)
+		if (transform.position.x < spawner.despawnX) {
 			Destroy (gameObject);
+		}
+	}
+
+	public void Kill() {
+		GameObject obj = Instantiate (deathFX);
+		obj.transform.position = transform.position;
+		Destroy (gameObject);
 	}
 }

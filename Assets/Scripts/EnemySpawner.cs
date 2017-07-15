@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour {
 	
 	public GameObject enemyPrefab;
+	public GameObject enemyDeathFX;
 	public PlayerController player;
 	public GameController gameController;
 
@@ -41,5 +42,6 @@ public class EnemySpawner : MonoBehaviour {
 		var controller = obj.GetComponent<EnemyController>();
 		controller.spawner = this;
 		controller.player = player;
+		controller.deathFX = enemyDeathFX;
 	}
 }
