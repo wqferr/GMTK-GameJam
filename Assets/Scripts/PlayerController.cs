@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour {
 
 	public Rigidbody2D rb;
-	public SpriteRenderer renderer;
+	new public SpriteRenderer renderer;
 
 	public Sprite normalSprite;
 	public Sprite dashSprite;
@@ -17,12 +17,19 @@ public class PlayerController : MonoBehaviour {
 	public bool airborne;
 	public bool dashing;
 
+
 	private bool hasAirJump;
 	private bool hasAirDash;
 	private bool fastFalling;
 
-	public float jumpPeak;
+
+	public float groundJumpPeak;
+	public float groundJumpDuration;
 	public float airJumpHeight;
+	public float airJumpDuration;
+	public float bounceHeight;
+	public float bounceDuration;
+
 
 	private float timeDashing;
 	public float dashDuration;
@@ -58,12 +65,12 @@ public class PlayerController : MonoBehaviour {
 			if (airborne) {
 				if (hasAirJump) {
 					hasAirJump = false;
-					JumpTo (transform.position.y + airJumpHeight, 1.0f);
+					JumpTo (transform.position.y + airJumpHeight, airJumpDuration);
 				} else if (!fastFalling) {
 					StartFastFalling ();
 				}
 			} else {
-				JumpTo (jumpPeak, 0.8f);
+				JumpTo (groundJumpPeak, groundJumpDuration);
 			}
 		}
 
@@ -162,5 +169,17 @@ public class PlayerController : MonoBehaviour {
 		timeDashing = 0;
 		dashing = true;
 		// TODO enable hitbox
+	}
+
+	void OnTriggerEnter2D(Collider2D other) {
+		if (dashing) {
+			Destroy (other);
+			hasAirDash = true;
+			hasAirJump = true;
+			// TODO implement canceling (CONSIDER MOMENTUM)
+		} else if (fastFalling) {
+			JumpTo(transform.position.y + bounceHeight, bounceDuration);
+			hasAirDash = true;
+		}
 	}
 }
