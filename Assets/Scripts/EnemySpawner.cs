@@ -3,27 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour {
-
-	public float spawnRadius;
+	
 	public GameObject enemyPrefab;
 	public PlayerController player;
-	public float enemySpeed;
-	public float dashSpeed;
-	public float despawnX;
 
-	public float spawnInterval;
-	float timeToSpawn;
+	public float spawnRadius;
+	public float despawnX;
+	public float baseSpawnInterval;
+
+	private float timeToSpawn;
 
 	// Use this for initialization
 	void Start () {
-		timeToSpawn = spawnInterval;
+		timeToSpawn = 1;
 	}
 
 	// Update is called once per frame
 	void Update () {
 		timeToSpawn -= Time.deltaTime;
 		if (timeToSpawn < 0) {
-			timeToSpawn = spawnInterval;
+			timeToSpawn = baseSpawnInterval * (Random.value/4 + 1);
 			Spawn ();
 		}
 	}

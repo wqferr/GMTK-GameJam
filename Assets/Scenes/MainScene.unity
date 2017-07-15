@@ -267,6 +267,48 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1305225424
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1305225425}
+  - component: {fileID: 1305225426}
+  m_Layer: 0
+  m_Name: Score Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1305225425
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1305225424}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.056846358, y: -0.18029463, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1305225426
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1305225424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca174da3583d7a24a8ab7d310cec428f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  combo: 0
+  maxCombo: 0
 --- !u!1 &1505754861
 GameObject:
   m_ObjectHideFlags: 0
@@ -290,7 +332,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1505754861}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 14, y: 0, z: 0}
+  m_LocalPosition: {x: 14, y: -0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -307,14 +349,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2efb6e25583381e44a001f27ad9f30be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnRadius: 3.5
   enemyPrefab: {fileID: 1990567570332152, guid: d71d077f2a224b14ebce6e48c79b2ecf,
     type: 2}
   player: {fileID: 1561767651}
-  enemySpeed: 5
-  dashSpeed: 7.5
+  spawnRadius: 3
   despawnX: -14
-  spawnInterval: 2
+  baseSpawnInterval: 2
 --- !u!1 &1561767648
 GameObject:
   m_ObjectHideFlags: 0
@@ -401,18 +441,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 1561767652}
   renderer: {fileID: 1561767649}
+  score: {fileID: 1305225426}
   normalSprite: {fileID: 21300000, guid: 2c7cc9b7024dbec40917c54151843f80, type: 3}
   dashSprite: {fileID: 21300000, guid: 482af246418af9045b6b24faae0637d4, type: 3}
   fastFallSprite: {fileID: 21300000, guid: 04dfd53974b62c94b8a60ca7ef37f394, type: 3}
-  goingUp: 0
-  goingDown: 0
-  airborne: 0
-  dashing: 0
+  normalHSpeed: 5
+  dashHSpeed: 7.5
+  jumpHSpeed: 3.5
+  fallHSpeed: 2
+  hspeed: 0
+  hacc: 5
+  accelerating: 0
   groundJumpPeak: 0
   groundJumpDuration: 1
   airJumpHeight: 4
   airJumpDuration: 1
-  bounceHeight: 1
+  bounceHeight: 2
   bounceDuration: 1
   dashDuration: 0.5
   jumpDuration: 1

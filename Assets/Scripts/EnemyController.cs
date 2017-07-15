@@ -2,16 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyController : MonoBehaviour {
+public class EnemyController : MovingObject {
 
 	public EnemySpawner spawner;
-	public PlayerController player;
 
 	// Update is called once per frame
-	void FixedUpdate ()
+	public override void FixedUpdate ()
 	{
-		float spd = player.CurrentState == PlayerState.DASHING ? spawner.dashSpeed : spawner.enemySpeed;
-		transform.Translate (Vector3.left * spd * Time.fixedDeltaTime);
+		base.FixedUpdate ();
 		if (transform.position.x < spawner.despawnX)
 			Destroy (gameObject);
 	}
