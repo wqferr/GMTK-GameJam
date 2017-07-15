@@ -7,6 +7,10 @@ public class PlayerController : MonoBehaviour {
 	public Rigidbody2D rb;
 	public SpriteRenderer renderer;
 
+	public Sprite normalSprite;
+	public Sprite dashSprite;
+	public Sprite fastFallSprite;
+
 	// Control variables
 	public bool goingUp;
 	public bool goingDown;
@@ -42,6 +46,7 @@ public class PlayerController : MonoBehaviour {
 	void Start () {
 		groundHeight = transform.position.y;
 		RefreshAbilities ();
+		renderer.sprite = normalSprite;
 		fastFalling = false;
 	}
 
@@ -82,7 +87,7 @@ public class PlayerController : MonoBehaviour {
 					);
 				}
 			} else if (goingDown) {
-				if (transform.position.y < groundHeight) {
+				if (transform.position.y < groundHeight) { // Hit ground
 					airborne = false;
 					goingDown = false;
 					fastFalling = false;
@@ -92,7 +97,8 @@ public class PlayerController : MonoBehaviour {
 						transform.position.z
 					);
 					RefreshAbilities ();
-				} else {
+					renderer.sprite = normalSprite;
+				} else { // Still falling
 					fallingSpeed -= fallGravity * fallGravity * Time.fixedDeltaTime;
 					if (fallingSpeed < maxFallSpeed)
 						fallingSpeed = maxFallSpeed;
@@ -121,6 +127,7 @@ public class PlayerController : MonoBehaviour {
 		StartFalling ();
 		fastFalling = true;
 		fallingSpeed = maxFallSpeed;
+		renderer.sprite = fastFallSprite;
 	}
 
 	void RefreshAbilities() {
