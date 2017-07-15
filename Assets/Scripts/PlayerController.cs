@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour {
 
 	public Rigidbody2D rb;
+	public SpriteRenderer renderer;
 
 	// Control variables
 	public bool goingUp;
