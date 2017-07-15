@@ -86,6 +86,11 @@ public class PlayerController : MonoBehaviour {
 					airborne = false;
 					goingDown = false;
 					fastFalling = false;
+					transform.position = new Vector3 (
+						transform.position.x,
+						groundHeight,
+						transform.position.z
+					);
 					RefreshAbilities ();
 				} else {
 					fallingSpeed -= fallGravity * fallGravity * Time.fixedDeltaTime;
