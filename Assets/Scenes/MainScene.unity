@@ -267,6 +267,34 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1305225424
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1305225425}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1305225425
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1305225424}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.056846358, y: -0.18029463, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1505754861
 GameObject:
   m_ObjectHideFlags: 0
@@ -404,10 +432,6 @@ MonoBehaviour:
   normalSprite: {fileID: 21300000, guid: 2c7cc9b7024dbec40917c54151843f80, type: 3}
   dashSprite: {fileID: 21300000, guid: 482af246418af9045b6b24faae0637d4, type: 3}
   fastFallSprite: {fileID: 21300000, guid: 04dfd53974b62c94b8a60ca7ef37f394, type: 3}
-  goingUp: 0
-  goingDown: 0
-  airborne: 0
-  dashing: 0
   groundJumpPeak: 0
   groundJumpDuration: 1
   airJumpHeight: 4

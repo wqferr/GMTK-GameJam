@@ -5,15 +5,22 @@ using UnityEngine;
 public class ScoreManager : MonoBehaviour
 {
 
-	// Use this for initialization
-	void Start ()
-	{
-		
-	}
+	public uint combo = 0;
+	public uint maxCombo = 0;
 	
-	// Update is called once per frame
-	void Update ()
-	{
-		
+	public void Hit() {
+		combo++;
+	}
+
+	public void EndCombo() {
+		// TODO add score
+		combo = 0;
+		if (combo > maxCombo)
+			SetMaxCombo (combo);
+	}
+
+	public void SetMaxCombo(uint cmb) {
+		maxCombo = cmb;
+		// TODO notify player maybe
 	}
 }

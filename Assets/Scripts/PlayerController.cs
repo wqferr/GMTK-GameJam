@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
 	#region REFERENCES
 	public Rigidbody2D rb;
 	new public SpriteRenderer renderer;
+	public ScoreManager score;
 
 	public Sprite normalSprite;
 	public Sprite dashSprite;
@@ -72,16 +73,17 @@ public class PlayerController : MonoBehaviour
 			RefreshAbilities ();
 			transform.position = new Vector3 (transform.position.x, groundHeight, transform.position.z);
 			renderer.sprite = normalSprite;
+			score.EndCombo ();
 
 			break;
 		case PlayerState.RISING: //jump
 			
-			if (currentState == PlayerState.GROUNDED)
+			if (currentState == PlayerState.GROUNDED || currentState == PlayerState.DASHING && previousState == PlayerState.GROUNDED)
 				JumpTo (groundJumpPeak, groundJumpDuration);
 			else
 			{
 				//we might need other verifications for currentState before jumping
-				JumpTo (airJumpHeight, airJumpDuration);
+				JumpTo (transform.position.y + airJumpHeight, airJumpDuration);
 			}
 
 			hasJump = false;
@@ -240,13 +242,15 @@ public class PlayerController : MonoBehaviour
 		{
 			RefreshAbilities();
 			Destroy (other.gameObject);
+			score.Hit ();
 			// TODO implement canceling (CONSIDER MOMENTUM)
-		} 
+		}
 		else if (currentState == PlayerState.FASTFALLING)
 		{
 			Destroy (other.gameObject);
 			JumpTo(transform.position.y + bounceHeight, bounceDuration);
 			hasDash = true;
+			score.Hit ();
 		}
 	}
 }
