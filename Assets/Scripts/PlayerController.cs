@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour {
 	public bool goingUp;
 	public bool goingDown;
 	public bool airborne;
+	public bool dashing;
 
 	private bool hasAirJump;
 	private bool hasAirDash;
@@ -53,6 +54,7 @@ public class PlayerController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (Input.GetButtonDown ("Fire1")) {
+			dashing = false;
 			if (airborne) {
 				if (hasAirJump) {
 					hasAirJump = false;
@@ -64,10 +66,24 @@ public class PlayerController : MonoBehaviour {
 				JumpTo (jumpPeak, 0.8f);
 			}
 		}
+
+		if (Input.GetButtonDown("Fire2")) {
+			if (!airborne || hasAirDash) {
+				hasAirDash = !airborne;
+				Dash ();
+			}
+		}
 	}
 
 	void FixedUpdate() {
-		if (airborne) {
+		if (dashing) {
+			// TODO update x coordinate
+			timeDashing += Time.fixedDeltaTime;
+			if (timeDashing > dashDuration) {
+				dashing = false;
+				StartFalling ();
+			}
+		} else if (airborne) {
 			if (goingUp) {
 				timeJumping += Time.fixedDeltaTime;
 				if (Mathf.Abs (transform.position.y - targetHeight) < 0.1f) {
@@ -87,7 +103,7 @@ public class PlayerController : MonoBehaviour {
 					);
 				}
 			} else if (goingDown) {
-				if (transform.position.y < groundHeight) { // Hit ground
+				if (transform.position.y <= groundHeight) { // Hit ground
 					airborne = false;
 					goingDown = false;
 					fastFalling = false;
@@ -115,12 +131,14 @@ public class PlayerController : MonoBehaviour {
 		jumpDuration = duration;
 		airborne = true;
 		goingUp = true;
+		renderer.sprite = normalSprite;
 	}
 
 	void StartFalling() {
 		goingUp = false;
 		goingDown = true;
 		fallingSpeed = 0;
+		renderer.sprite = normalSprite;
 	}
 
 	void StartFastFalling() {
@@ -133,5 +151,16 @@ public class PlayerController : MonoBehaviour {
 	void RefreshAbilities() {
 		hasAirJump = true;
 		hasAirDash = true;
+	}
+
+	void Dash() {
+		goingUp = false;
+		goingDown = false;
+		fastFalling = false;
+		fallingSpeed = 0;
+		renderer.sprite = dashSprite;
+		timeDashing = 0;
+		dashing = true;
+		// TODO enable hitbox
 	}
 }

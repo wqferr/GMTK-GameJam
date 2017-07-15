@@ -359,9 +359,10 @@ MonoBehaviour:
   goingUp: 0
   goingDown: 0
   airborne: 0
+  dashing: 0
   jumpPeak: 0
   airJumpHeight: 4
-  dashDuration: 0
+  dashDuration: 0.5
   jumpDuration: 0
   fallGravity: 5
   maxFallSpeed: -15
