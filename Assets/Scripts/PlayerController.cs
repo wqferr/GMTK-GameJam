@@ -271,11 +271,11 @@ public class PlayerController : MonoBehaviour
 	{
 		if (currentState == PlayerState.DASHING) {
 			RefreshAbilities ();
-			Destroy (other.gameObject);
+			other.gameObject.GetComponent<EnemyController> ().Kill ();
 			score.Hit ();
 			// TODO maybe increase dash time?
 		} else if (currentState == PlayerState.FASTFALLING) {
-			Destroy (other.gameObject);
+			other.gameObject.GetComponent<EnemyController> ().Kill ();
 			JumpTo (transform.position.y + bounceHeight, bounceDuration);
 			hasDash = true;
 			score.Hit ();

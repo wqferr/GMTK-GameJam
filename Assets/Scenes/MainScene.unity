@@ -309,6 +309,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   combo: 0
   maxCombo: 0
+  enemiesKilled: 0
+  distance: 0
 --- !u!1 &1505754861
 GameObject:
   m_ObjectHideFlags: 0
@@ -350,6 +352,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 1990567570332152, guid: d71d077f2a224b14ebce6e48c79b2ecf,
+    type: 2}
+  enemyDeathFX: {fileID: 1924705097564690, guid: 3a040582438af2f45a2515b2fc9ce848,
     type: 2}
   player: {fileID: 1561767651}
   spawnRadius: 3
