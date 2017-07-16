@@ -4297,7 +4297,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Kills: '
+  m_Text: 'Score: '
 --- !u!222 &970779720
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5428,7 +5428,6 @@ MonoBehaviour:
   deathEffects: {fileID: 1717077430306090, guid: 725683e3c84846d479d63be0111baf2b,
     type: 2}
   healthText: {fileID: 1218083528}
-  distanceText: {fileID: 1751414696}
   rb: {fileID: 1561767652}
   renderer: {fileID: 1561767649}
   score: {fileID: 1305225426}
@@ -6239,7 +6238,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Kills
+  m_Text: Score
 --- !u!222 &2012801471
 CanvasRenderer:
   m_ObjectHideFlags: 0

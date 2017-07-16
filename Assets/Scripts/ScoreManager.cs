@@ -15,14 +15,14 @@ public class ScoreManager : MonoBehaviour
 
 	public class Score {
 		public int maxCombo;
-		public int enemiesKilled;
+		public int points;
 		public string name;
 
 		public Score() {}
 
-		public Score(float dist, int enemies, int maxCombo, string name) {
+		public Score(float dist, int points, int maxCombo, string name) {
 			this.maxCombo = maxCombo;
-			this.enemiesKilled = enemies;
+			this.points = points;
 			this.name = name;
 		}
 	}
@@ -31,19 +31,19 @@ public class ScoreManager : MonoBehaviour
 
 	public int combo;
 	public int maxCombo;
-	public int enemiesKilled;
+	public int points;
 	public float distance;
 
 	public void Start() {
 		combo = 0;
 		maxCombo = 0;
-		enemiesKilled = 0;
+		points = 0;
 		distance = 0;
 	}
 
 	public void Hit()
 	{
-		enemiesKilled++;
+		points += (combo / 5) + 1;
 		combo++;
 
 		AudioSource.PlayClipAtPoint (player.killSFX, Camera.main.transform.position, 0.8f);
@@ -80,7 +80,7 @@ public class ScoreManager : MonoBehaviour
 			AudioSource.PlayClipAtPoint (player.comboSFX, Camera.main.transform.position);
 		}
 
-		killsText.text = "Kills: " + enemiesKilled;
+		killsText.text = "Score: " + points;
 		comboText.text = "Combo: " + combo;
 	}
 
@@ -96,7 +96,7 @@ public class ScoreManager : MonoBehaviour
 	}
 
 	public void AddScore(string name) {
-		Score s = new Score (distance, enemiesKilled, maxCombo, name);
+		Score s = new Score (distance, points, maxCombo, name);
 		Score[] scores;
 
 		if (PlayerPrefs.HasKey ("n")) {
@@ -112,7 +112,7 @@ public class ScoreManager : MonoBehaviour
 			
 			// Sorted insert
 			i = oldScores.Length-1;
-			while (i >= 0 && scores [i].enemiesKilled < s.enemiesKilled) {
+			while (i >= 0 && scores [i].points< s.points) {
 				scores [i + 1] = scores [i];
 				i--;
 			}
@@ -130,7 +130,7 @@ public class ScoreManager : MonoBehaviour
 		PlayerPrefs.SetInt ("n", n);
 		for (int i = 0; i < n; i++) {
 			PlayerPrefs.SetString ("HS_" + i + "_name", scores [i].name);
-			PlayerPrefs.SetInt ("HS_" + i + "_ekill", scores[i].enemiesKilled);
+			PlayerPrefs.SetInt ("HS_" + i + "_points", scores[i].points);
 			PlayerPrefs.SetInt ("HS_" + i + "_combo", scores[i].maxCombo);
 		}
 	}
@@ -145,7 +145,7 @@ public class ScoreManager : MonoBehaviour
 		for (int i = 0; i < n; i++) {
 			var s = new Score ();
 			s.name = PlayerPrefs.GetString ("HS_" + i + "_name");
-			s.enemiesKilled = PlayerPrefs.GetInt ("HS_" + i + "_ekill");
+			s.points = PlayerPrefs.GetInt ("HS_" + i + "_points");
 			s.maxCombo = PlayerPrefs.GetInt ("HS_" + i + "_combo");
 
 			scores [i] = s;
