@@ -199,20 +199,27 @@ public class PlayerController : MonoBehaviour
 		if (gameController.CurrentState != GameState.RUNNING)
 			return;
 
-		if (!hitstun) {
-			if (Input.GetButtonDown ("Jump")) {
+		if (!hitstun)
+		{
+			if (Input.GetButtonDown ("Jump"))
+			{
 				if (hasJump) {
 					if (currentState == PlayerState.GROUNDED || currentState == PlayerState.DASHING && previousState == PlayerState.GROUNDED)
 						JumpTo (groundJumpPeak, groundJumpDuration);
 					else
 						JumpTo (transform.position.y + airJumpHeight, airJumpDuration);
-				} else
-					SwitchState (PlayerState.FASTFALLING);
+				}
 			}
 
-			if (Input.GetButtonDown ("Dash")) {
+			if (Input.GetButtonDown ("Dash"))
+			{
 				if (hasDash)
 					SwitchState (PlayerState.DASHING);
+			}
+
+			if (Input.GetButtonDown ("Fastfall"))
+			{
+				SwitchState (PlayerState.FASTFALLING);
 			}
 		}
 	}
