@@ -238,8 +238,8 @@ public class PlayerController : MonoBehaviour
 			}
 		}
 
-		score.distance += hspeed * Time.fixedDeltaTime;
-		distanceText.text = "Distance: " + score.distance;
+		score.distance += hspeed * Time.fixedDeltaTime / 100f;
+		distanceText.text = "Distance: " + Mathf.Floor (score.distance);
 
 		if (recoiling) {
 			if (transform.position.x > targetX) {
