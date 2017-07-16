@@ -1503,9 +1503,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca174da3583d7a24a8ab7d310cec428f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healCombo: 0
-  healthUpCombo: 0
-  player: {fileID: 0}
+  healCombo: 5
+  healthUpCombo: 10
+  player: {fileID: 1561767651}
   killsText: {fileID: 970779719}
   comboText: {fileID: 568415952}
   combo: 0

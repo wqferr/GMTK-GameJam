@@ -34,8 +34,6 @@ public class ScoreManager : MonoBehaviour
 	public int enemiesKilled;
 	public float distance;
 
-	private float timer = 0.0f;
-
 	public void Start() {
 		combo = 0;
 		maxCombo = 0;
