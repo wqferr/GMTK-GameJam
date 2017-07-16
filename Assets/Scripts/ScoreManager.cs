@@ -20,7 +20,7 @@ public class ScoreManager : MonoBehaviour
 
 		public Score() {}
 
-		public Score(float dist, int points, int maxCombo, string name) {
+		public Score(int points, int maxCombo, string name) {
 			this.maxCombo = maxCombo;
 			this.points = points;
 			this.name = name;
@@ -32,13 +32,11 @@ public class ScoreManager : MonoBehaviour
 	public int combo;
 	public int maxCombo;
 	public int points;
-	public float distance;
 
 	public void Start() {
 		combo = 0;
 		maxCombo = 0;
 		points = 0;
-		distance = 0;
 	}
 
 	public void Hit()
@@ -46,8 +44,9 @@ public class ScoreManager : MonoBehaviour
 		points += (combo / 5) + 1;
 		combo++;
 
-		AudioSource.PlayClipAtPoint (player.killSFX, Camera.main.transform.position, 0.8f);
+		AudioSource.PlayClipAtPoint (player.killSFX, Camera.main.transform.position, 0.6f);
 		player.normalHSpeed += player.speedBoost;
+		player.dashHSpeed += player.speedBoost;
 
 		bool audio = false;
 
@@ -96,7 +95,7 @@ public class ScoreManager : MonoBehaviour
 	}
 
 	public void AddScore(string name) {
-		Score s = new Score (distance, points, maxCombo, name);
+		Score s = new Score (points, maxCombo, name);
 		Score[] scores;
 
 		if (PlayerPrefs.HasKey ("n")) {

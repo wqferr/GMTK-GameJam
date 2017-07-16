@@ -51,6 +51,8 @@ public class PlayerController : MonoBehaviour
 	private float timeJumping;
 	private float groundHeight;
 
+	private float startingHSpeed;
+
 	[HideInInspector]
 	public float hspeed;
 	public float hacc;
@@ -158,6 +160,7 @@ public class PlayerController : MonoBehaviour
 			hitstun = true;
 
 			targetX = initialX - hitHKnockback;
+			normalHSpeed = startingHSpeed;
 
 			JumpTo (transform.position.y + hitKnockbackHeight, hitKnockbackDuration);
 			nextState = PlayerState.RISING;
@@ -206,6 +209,8 @@ public class PlayerController : MonoBehaviour
 		RefreshAbilities ();
 		renderer.sprite = normalSprite;
 		hspeed = normalHSpeed;
+
+		startingHSpeed = normalHSpeed;
 	}
 
 	// Update is called once per frame
