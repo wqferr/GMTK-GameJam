@@ -9,6 +9,16 @@ public class ScoreManager : MonoBehaviour
 		public int maxCombo;
 		public int enemiesKilled;
 		public float dist;
+		public string name;
+
+		public Score() {}
+
+		public Score(float dist, int enemies, int maxCombo, string name) {
+			this.maxCombo = maxCombo;
+			this.enemiesKilled = enemies;
+			this.dist = dist;
+			this.name = name;
+		}
 	}
 
 	public static int MAX_N = 10;
@@ -41,13 +51,9 @@ public class ScoreManager : MonoBehaviour
 		maxCombo = cmb;
 	}
 
-	public void AddScore() {
-		Score s = new Score ();
+	public void AddScore(string name) {
+		Score s = new Score (distance, enemiesKilled, maxCombo, name);
 		Score[] scores;
-
-		s.dist = distance;
-		s.enemiesKilled = enemiesKilled;
-		s.maxCombo = maxCombo;
 
 		if (PlayerPrefs.HasKey ("n")) {
 			int n = PlayerPrefs.GetInt("n");
@@ -79,6 +85,7 @@ public class ScoreManager : MonoBehaviour
 	private void SetScores(Score[] scores) {
 		PlayerPrefs.SetInt ("n", scores.Length);
 		for (int i = 0; i < scores.Length; i++) {
+			PlayerPrefs.SetString ("HS_" + i + "_name", scores [i].name);
 			PlayerPrefs.SetFloat ("HS_" + i + "_dist", scores[i].dist);
 			PlayerPrefs.SetInt ("HS_" + i + "_ekill", scores[i].enemiesKilled);
 			PlayerPrefs.SetInt ("HS_" + i + "_combo", scores[i].maxCombo);
@@ -92,6 +99,7 @@ public class ScoreManager : MonoBehaviour
 		Score[] scores = new Score[n];
 		for (int i = 0; i < n; i++) {
 			var s = new Score ();
+			s.name = PlayerPrefs.GetString ("HS_" + i + "_name");
 			s.dist = PlayerPrefs.GetFloat ("HS_" + i + "_dist");
 			s.enemiesKilled = PlayerPrefs.GetInt ("HS_" + i + "_ekill");
 			s.maxCombo = PlayerPrefs.GetInt ("HS_" + i + "_combo");
