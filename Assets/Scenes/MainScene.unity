@@ -4719,7 +4719,7 @@ MonoBehaviour:
   comboText: {fileID: 568415952}
   combo: 0
   maxCombo: 0
-  enemiesKilled: 0
+  points: 0
   distance: 0
 --- !u!1 &1325007448
 GameObject:
