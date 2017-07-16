@@ -191,7 +191,7 @@ public class PlayerController : MonoBehaviour
 			return;
 
 		if (!hitstun) {
-			if (Input.GetButtonDown ("Fire1")) {
+			if (Input.GetButtonDown ("Jump")) {
 				if (hasJump) {
 					if (currentState == PlayerState.GROUNDED || currentState == PlayerState.DASHING && previousState == PlayerState.GROUNDED)
 						JumpTo (groundJumpPeak, groundJumpDuration);
@@ -201,7 +201,7 @@ public class PlayerController : MonoBehaviour
 					SwitchState (PlayerState.FASTFALLING);
 			}
 
-			if (Input.GetButtonDown ("Fire2")) {
+			if (Input.GetButtonDown ("Dash")) {
 				if (hasDash)
 					SwitchState (PlayerState.DASHING);
 			}
