@@ -5,6 +5,10 @@ using UnityEngine.UI;
 
 public class ScoreManager : MonoBehaviour
 {
+	public int healCombo;
+	public int healthUpCombo;
+	public PlayerController player;
+
 	public Text killsText, comboText;
 
 	public class Score {
@@ -43,6 +47,17 @@ public class ScoreManager : MonoBehaviour
 	{
 		enemiesKilled++;
 		combo++;
+
+		if (combo % healCombo == 0) {
+			print ("combo");
+			if (player.health + 1 <= player.startingHealth) {
+				player.IncreaseHealth (1);
+			}
+		}
+		if (combo % healthUpCombo == 0) {
+			if (player.health == player.startingHealth)
+				player.IncreaseHealth (1);
+		}
 
 		killsText.text = "Kills: " + enemiesKilled;
 		comboText.text = "Combo: " + combo;

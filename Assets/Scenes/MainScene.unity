@@ -1062,6 +1062,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca174da3583d7a24a8ab7d310cec428f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healCombo: 3
+  healthUpCombo: 4
+  player: {fileID: 1561767651}
   killsText: {fileID: 970779719}
   comboText: {fileID: 568415952}
   combo: 0
@@ -1783,7 +1786,7 @@ MonoBehaviour:
   hspeed: 0
   hacc: 50
   accelerating: 0
-  startingHealth: 1
+  startingHealth: 3
   normalHSpeed: 1000
   dashHSpeed: 1600
   jumpHSpeed: 3500

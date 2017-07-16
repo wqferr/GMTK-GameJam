@@ -49,7 +49,10 @@ public class PlayerController : MonoBehaviour
 	private float initialHeight;
 	private float targetHeight;
 
-	private int health;
+	public int health {
+		get;
+		private set;
+	}
 
 	#region TWEAKABLES
 	public int startingHealth;
@@ -169,6 +172,7 @@ public class PlayerController : MonoBehaviour
 		health += amount;
 		if(health > startingHealth)
 			startingHealth = health;
+		healthText.text = health + "/" + startingHealth;
 	}
 
 	// Use this for initialization
