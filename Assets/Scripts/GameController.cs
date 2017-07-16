@@ -16,6 +16,7 @@ public class GameController : MonoBehaviour {
 
 	public DeathPopupBehaviour deathPopup;
 	public ScoreManager scoreManager;
+	public ParticleSystem particleSystem;
 
 	private GameState currentState = GameState.START;
 	private GameState previousState = GameState.NULL;
@@ -42,12 +43,15 @@ public class GameController : MonoBehaviour {
 			SwitchState (GameState.START);
 			break;
 		case GameState.PAUSED:
+			particleSystem.gameObject.SetActive (false);
 			break;
 		case GameState.RUNNING:
+			particleSystem.gameObject.SetActive (true);
 			break;
 		case GameState.DIE:
 			deathPopup.gameObject.SetActive(true);
 			deathPopup.Activate ();
+			particleSystem.gameObject.SetActive (false);
 			break;
 		default:
 			break;

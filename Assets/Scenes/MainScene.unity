@@ -663,6 +663,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   deathPopup: {fileID: 1496450454}
   scoreManager: {fileID: 1305225426}
+  particleSystem: {fileID: 662438239}
 --- !u!1 &568415950
 GameObject:
   m_ObjectHideFlags: 0
@@ -951,7 +952,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -563618888
+  randomSeed: 1045499628
   InitialModule:
     serializedVersion: 3
     enabled: 1
