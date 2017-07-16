@@ -57,7 +57,6 @@ public class LeaderboardsBehaviour : MonoBehaviour
 			foreach (ScoreManager.Score highScore in highScores) {
 				string[] strings = new string[] {
 					highScore.name,
-					highScore.dist.ToString (),
 					highScore.enemiesKilled.ToString (),
 					highScore.maxCombo.ToString ()
 				};

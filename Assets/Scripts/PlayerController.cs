@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour
 
 	public GameObject deathEffects;
 
-	public Text healthText, distanceText;
+	public Text healthText;
 
 	public Rigidbody2D rb;
 	new public SpriteRenderer renderer;
@@ -252,9 +252,6 @@ public class PlayerController : MonoBehaviour
 				accelerating = false;
 			}
 		}
-
-		score.distance += hspeed * Time.fixedDeltaTime / 100f;
-		distanceText.text = "Distance: " + Mathf.Floor (score.distance);
 
 		if (recoiling) {
 			if (transform.position.x > targetX) {
