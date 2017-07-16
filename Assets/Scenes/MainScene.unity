@@ -4296,7 +4296,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Kills: '
+  m_Text: 'Score: '
 --- !u!222 &970779720
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4718,7 +4718,7 @@ MonoBehaviour:
   comboText: {fileID: 568415952}
   combo: 0
   maxCombo: 0
-  enemiesKilled: 0
+  points: 0
   distance: 0
 --- !u!1 &1325007448
 GameObject:
