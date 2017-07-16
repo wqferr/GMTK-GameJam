@@ -57,7 +57,6 @@ public class GameController : MonoBehaviour {
 	public void PlayerDied()
 	{
 		// TODO read player name
-		scoreManager.AddScore ("name");
 		SwitchState (GameState.DIE);
 	}
 
