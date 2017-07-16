@@ -5434,12 +5434,14 @@ MonoBehaviour:
   dashSprite: {fileID: 21300000, guid: 482af246418af9045b6b24faae0637d4, type: 3}
   fastFallSprite: {fileID: 21300000, guid: 04dfd53974b62c94b8a60ca7ef37f394, type: 3}
   dashSFX: {fileID: 8300000, guid: ea5267eb34784e444a0628d01f5098ea, type: 3}
-  deathSFX: {fileID: 0}
-  killSFX: {fileID: 0}
+  fallSFX: {fileID: 8300000, guid: abf50e56db21a6848b5cd17685274660, type: 3}
+  hitSFX: {fileID: 8300000, guid: 12e687aeea883ec44bac17b1fb27cee1, type: 3}
+  deathSFX: {fileID: 8300000, guid: 543564724d6d2be48a0033b71c9b67f7, type: 3}
+  killSFX: {fileID: 8300000, guid: b0085069b09933e448fb7df51a385cc6, type: 3}
   hspeed: 0
   hacc: 50
   accelerating: 0
-  startingHealth: 1
+  startingHealth: 2
   normalHSpeed: 1000
   dashHSpeed: 1600
   jumpHSpeed: 3500

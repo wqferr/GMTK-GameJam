@@ -46,6 +46,8 @@ public class ScoreManager : MonoBehaviour
 		enemiesKilled++;
 		combo++;
 
+		AudioSource.PlayClipAtPoint (player.killSFX, Camera.main.transform.position, 0.8f);
+
 		if (combo % healCombo == 0) {
 			print ("combo");
 			if (player.health + 1 <= player.startingHealth) {
