@@ -29,6 +29,10 @@ public class PlayerController : MonoBehaviour
 	public Sprite normalSprite;
 	public Sprite dashSprite;
 	public Sprite fastFallSprite;
+
+	public AudioClip dashSFX;
+	public AudioClip deathSFX;
+	public AudioClip killSFX;
 	#endregion
 
 	#region ATTRIBUTES
@@ -135,6 +139,7 @@ public class PlayerController : MonoBehaviour
 			break;
 		case PlayerState.DASHING:
 			Dash ();
+			AudioSource.PlayClipAtPoint (dashSFX, Camera.main.transform.position, 0.3f);
 			if(currentState != PlayerState.GROUNDED)
 				hasDash = false;
 			break;
