@@ -49,6 +49,7 @@ public class ScoreManager : MonoBehaviour
 		combo++;
 
 		AudioSource.PlayClipAtPoint (player.killSFX, Camera.main.transform.position, 0.8f);
+		player.normalHSpeed += player.speedBoost;
 
 		bool c = false;
 		if (combo % healCombo == 0) {

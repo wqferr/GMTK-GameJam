@@ -5463,6 +5463,7 @@ MonoBehaviour:
   hitHSpeed: 3000
   hitHKnockback: 400
   hitRecoverSpeed: 50
+  speedBoost: 10
 --- !u!50 &1561767652
 Rigidbody2D:
   serializedVersion: 4

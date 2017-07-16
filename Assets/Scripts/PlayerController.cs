@@ -100,6 +100,8 @@ public class PlayerController : MonoBehaviour
 	public float hitHSpeed;
 	public float hitHKnockback;
 	public float hitRecoverSpeed;
+
+	public float speedBoost;
 	#endregion
 	#endregion
 
