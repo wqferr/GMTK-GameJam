@@ -49,6 +49,7 @@ public class ScoreManager : MonoBehaviour
 		combo++;
 
 		AudioSource.PlayClipAtPoint (player.killSFX, Camera.main.transform.position, 0.8f);
+		player.normalHSpeed += player.speedBoost;
 
 		bool c = false;
 		if (combo % healCombo == 0) {
@@ -59,12 +60,20 @@ public class ScoreManager : MonoBehaviour
 				vfx.transform.localScale = Vector3.one;
 				vfx.transform.position = player.transform.position;
 				vfx.transform.Translate (Vector3.back);
+				var trails = vfx.GetComponent<ParticleSystem> ().trails;
+				trails.widthOverTrailMultiplier = 0;
 			}
 			c = true;
 		}
 		if (combo % healthUpCombo == 0) {
 			if (player.health == player.startingHealth)
 				player.IncreaseHealth (1);
+
+			var vfx = Instantiate (healingFX);
+			vfx.transform.parent = player.transform;
+			vfx.transform.localScale = Vector3.one;
+			vfx.transform.position = player.transform.position;
+			vfx.transform.Translate (Vector3.back);
 			c = true;
 		}
 		if (c) {
