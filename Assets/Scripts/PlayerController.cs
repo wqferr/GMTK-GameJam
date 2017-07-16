@@ -30,11 +30,14 @@ public class PlayerController : MonoBehaviour
 	public Sprite dashSprite;
 	public Sprite fastFallSprite;
 
+	#region SOUNDS
 	public AudioClip dashSFX;
 	public AudioClip fallSFX;
 	public AudioClip hitSFX;
 	public AudioClip deathSFX;
 	public AudioClip killSFX;
+	public AudioClip comboSFX;
+	#endregion
 	#endregion
 
 	#region ATTRIBUTES

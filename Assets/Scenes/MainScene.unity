@@ -5438,6 +5438,7 @@ MonoBehaviour:
   hitSFX: {fileID: 8300000, guid: 12e687aeea883ec44bac17b1fb27cee1, type: 3}
   deathSFX: {fileID: 8300000, guid: 543564724d6d2be48a0033b71c9b67f7, type: 3}
   killSFX: {fileID: 8300000, guid: b0085069b09933e448fb7df51a385cc6, type: 3}
+  comboSFX: {fileID: 8300000, guid: 6ce0edd328573e44990ee48b5cd045b0, type: 3}
   hspeed: 0
   hacc: 50
   accelerating: 0
