@@ -68,9 +68,8 @@ public class ScoreManager : MonoBehaviour
 			int i;
 
 			Score[] oldScores = GetHighScores (n);
-			if (n < MAX_N)
-				n++;
 
+			n++;
 			scores = new Score[n];
 			for (i = 0; i < oldScores.Length; i++)
 				scores [i] = oldScores[i];
@@ -91,8 +90,9 @@ public class ScoreManager : MonoBehaviour
 	}
 
 	private void SetScores(Score[] scores) {
-		PlayerPrefs.SetInt ("n", scores.Length);
-		for (int i = 0; i < scores.Length; i++) {
+		int n = Mathf.Min (scores.Length, MAX_N);
+		PlayerPrefs.SetInt ("n", n);
+		for (int i = 0; i < n; i++) {
 			PlayerPrefs.SetString ("HS_" + i + "_name", scores [i].name);
 			PlayerPrefs.SetFloat ("HS_" + i + "_dist", scores[i].dist);
 			PlayerPrefs.SetInt ("HS_" + i + "_ekill", scores[i].enemiesKilled);
