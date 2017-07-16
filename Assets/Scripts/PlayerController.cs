@@ -106,7 +106,8 @@ public class PlayerController : MonoBehaviour
 		case PlayerState.GROUNDED:
 			hitstun = false;
 			RefreshAbilities ();
-			if (!accelerating && previousState != PlayerState.FASTFALLING)
+
+			if (!accelerating || currentState == PlayerState.FASTFALLING)
 				hspeed = normalHSpeed;
 			else
 				accelerating = true;
