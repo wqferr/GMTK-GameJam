@@ -34,7 +34,7 @@ public class EnemySpawner : MonoBehaviour {
 	}
 
 	void Spawn() {
-		float r = (2 * Random.value - 1) * spawnRadius;
+		float r = (2 * Mathf.Pow(Random.value, 2) - 1) * spawnRadius;
 		GameObject obj = Instantiate (enemyPrefab);
 		obj.transform.parent = transform;
 		obj.transform.position = transform.position;

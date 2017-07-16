@@ -4714,7 +4714,6 @@ MonoBehaviour:
   healCombo: 5
   healthUpCombo: 10
   player: {fileID: 1561767651}
-  spawner: {fileID: 1505754863}
   healingFX: {fileID: 1261077001222972, guid: 83415a25c600ce043ad75b752e1451ec, type: 2}
   killsText: {fileID: 970779719}
   comboText: {fileID: 568415952}
@@ -5082,7 +5081,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1505754861}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1500, y: -0.5, z: 0}
+  m_LocalPosition: {x: 1500, y: 100, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
