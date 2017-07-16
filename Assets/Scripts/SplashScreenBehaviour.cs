@@ -7,4 +7,8 @@ public class SplashScreenBehaviour : MonoBehaviour {
 	public void OnPlayClick() {
 		SceneManager.LoadScene("MainScene");
 	}
+
+	public void OnCreditsClick() {
+		SceneManager.LoadScene ("Credits");
+	}
 }
