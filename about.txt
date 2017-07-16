@@ -36,7 +36,7 @@ Mechanics:
   Speed:
     The more enemies you kill, the faster you go, so you will have to think faster
     in order to keep these combos going.
-	If you get hit, the speed will reset.
+    If you get hit, the speed will reset.
 
 * Destroying an enemy with a dash will refresh both your dash and your jump,
 while destroying an enemy with a Fast Fall will only refresh your midair dash.
