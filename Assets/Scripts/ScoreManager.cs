@@ -9,6 +9,8 @@ public class ScoreManager : MonoBehaviour
 	public int healthUpCombo;
 	public PlayerController player;
 
+	public GameObject healingFX;
+
 	public Text killsText, comboText;
 
 	public class Score {
@@ -50,9 +52,13 @@ public class ScoreManager : MonoBehaviour
 
 		bool c = false;
 		if (combo % healCombo == 0) {
-			print ("combo");
 			if (player.health + 1 <= player.startingHealth) {
 				player.IncreaseHealth (1);
+				var vfx = Instantiate (healingFX);
+				vfx.transform.parent = player.transform;
+				vfx.transform.localScale = Vector3.one;
+				vfx.transform.position = player.transform.position;
+				vfx.transform.Translate (Vector3.back);
 			}
 			c = true;
 		}
