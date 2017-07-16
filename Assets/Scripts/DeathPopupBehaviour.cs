@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class DeathPopupBehaviour : MonoBehaviour
@@ -10,8 +11,19 @@ public class DeathPopupBehaviour : MonoBehaviour
 	public float moveDuration;
 
 	private bool move;
+	private bool saved = false;
 	private float timeMoving;
 	private float initialHeight;
+
+	public void OnEndEditName(Object inputField)
+	{
+		if(!saved)
+		{
+			InputField field = (InputField)inputField;
+			leaderBoard.scoreManager.AddScore(field.text);
+			saved = true;
+		}
+		}
 
 	public void OnTryAgainClick()
 	{
