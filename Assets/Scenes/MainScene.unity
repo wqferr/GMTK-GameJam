@@ -890,6 +890,11 @@ MonoBehaviour:
   jumpDuration: 1
   fallGravity: 50
   maxFallSpeed: -1500
+  hitKnockbackHeight: 50
+  hitKnockbackDuration: 0.5
+  hitHSpeed: 3000
+  hitHKnockback: 400
+  hitRecoverSpeed: 50
 --- !u!50 &1561767652
 Rigidbody2D:
   serializedVersion: 4

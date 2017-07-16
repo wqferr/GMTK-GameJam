@@ -8,7 +8,8 @@ public enum PlayerState
 	FASTFALLING,
 	RISING,
 	FALLING,
-	GROUNDED
+	GROUNDED,
+	HIT
 }
 
 public class PlayerController : MonoBehaviour
@@ -69,6 +70,19 @@ public class PlayerController : MonoBehaviour
 
 	public float fallGravity;
 	public float maxFallSpeed;
+
+	private float initialX;
+	private float targetX;
+
+	private bool recoiling;
+	private bool recovering;
+	private bool hitstun;
+
+	public float hitKnockbackHeight;
+	public float hitKnockbackDuration;
+	public float hitHSpeed;
+	public float hitHKnockback;
+	public float hitRecoverSpeed;
 	#endregion
 	#endregion
 
@@ -84,7 +98,7 @@ public class PlayerController : MonoBehaviour
 		switch(nextState)
 		{
 		case PlayerState.GROUNDED:
-			
+			hitstun = false;
 			RefreshAbilities ();
 			if (!accelerating && previousState != PlayerState.FASTFALLING)
 				hspeed = normalHSpeed;
@@ -114,6 +128,16 @@ public class PlayerController : MonoBehaviour
 			Dash ();
 			if(currentState != PlayerState.GROUNDED)
 				hasDash = false;
+			break;
+		case PlayerState.HIT:
+			DecreaseHealth (1);
+			recoiling = true;
+			hitstun = true;
+
+			targetX = initialX - hitHKnockback;
+
+			JumpTo (transform.position.y + hitKnockbackHeight, hitKnockbackDuration);
+			nextState = PlayerState.RISING;
 			break;
 		default:
 			break;
@@ -148,6 +172,7 @@ public class PlayerController : MonoBehaviour
 	void Start ()
 	{
 		health = startingHealth;
+		initialX = transform.position.x;
 		groundHeight = transform.position.y;
 		RefreshAbilities ();
 		renderer.sprite = normalSprite;
@@ -160,22 +185,21 @@ public class PlayerController : MonoBehaviour
 		if (gameController.CurrentState != GameState.RUNNING)
 			return;
 
-		if (Input.GetButtonDown ("Fire1"))
-		{
-			if(hasJump) {
-				//SwitchState (PlayerState.RISING);
-				if (currentState == PlayerState.GROUNDED || currentState == PlayerState.DASHING && previousState == PlayerState.GROUNDED)
-					JumpTo (groundJumpPeak, groundJumpDuration);
-				else
-					JumpTo (transform.position.y + airJumpHeight, airJumpDuration);
-			} else
-				SwitchState (PlayerState.FASTFALLING);
-		}
+		if (!hitstun) {
+			if (Input.GetButtonDown ("Fire1")) {
+				if (hasJump) {
+					if (currentState == PlayerState.GROUNDED || currentState == PlayerState.DASHING && previousState == PlayerState.GROUNDED)
+						JumpTo (groundJumpPeak, groundJumpDuration);
+					else
+						JumpTo (transform.position.y + airJumpHeight, airJumpDuration);
+				} else
+					SwitchState (PlayerState.FASTFALLING);
+			}
 
-		if (Input.GetButtonDown("Fire2"))
-		{
-			if(hasDash)
-				SwitchState (PlayerState.DASHING);
+			if (Input.GetButtonDown ("Fire2")) {
+				if (hasDash)
+					SwitchState (PlayerState.DASHING);
+			}
 		}
 	}
 
@@ -194,6 +218,21 @@ public class PlayerController : MonoBehaviour
 		}
 		score.distance += hspeed * Time.fixedDeltaTime;
 
+		if (recoiling) {
+			if (transform.position.x > targetX) {
+				transform.Translate (Vector3.left * hitHSpeed * Time.fixedDeltaTime);
+			} else {
+				recoiling = false;
+				recovering = true;
+			}
+		} else if (recovering) {
+			if (transform.position.x < initialX) {
+				transform.Translate (Vector3.right * hitRecoverSpeed * Time.fixedDeltaTime);
+			} else {
+				recovering = false;
+			}
+		}
+		
 		switch(currentState)
 		{
 		case PlayerState.RISING: //jumping
@@ -218,6 +257,11 @@ public class PlayerController : MonoBehaviour
 
 			if (transform.position.y <= groundHeight) // Hit ground
 			{
+				transform.position = new Vector3 (
+					transform.position.x,
+					groundHeight,
+					transform.position.z
+				);
 				SwitchState (PlayerState.GROUNDED);
 			} 
 			else // Still falling
@@ -233,6 +277,11 @@ public class PlayerController : MonoBehaviour
 			
 			if (transform.position.y <= groundHeight) // Hit ground
 			{
+				transform.position = new Vector3 (
+					transform.position.x,
+					groundHeight,
+					transform.position.z
+				);
 				SwitchState (PlayerState.GROUNDED);
 			} 
 			else // Still falling
@@ -313,10 +362,9 @@ public class PlayerController : MonoBehaviour
 			hasDash = true;
 			score.Hit ();
 		}
-		else 
+		else if (!hitstun)
 		{
-			//play hit animation
-			DecreaseHealth(1);
+			SwitchState (PlayerState.HIT);
 		}
 	}
 }
