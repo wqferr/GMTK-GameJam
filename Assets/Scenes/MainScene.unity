@@ -803,7 +803,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 21204891
+  randomSeed: -563618888
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -4982,6 +4982,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameController: {fileID: 509710264}
+  deathEffects: {fileID: 1717077430306090, guid: 725683e3c84846d479d63be0111baf2b,
+    type: 2}
   healthText: {fileID: 1218083528}
   distanceText: {fileID: 1751414696}
   rb: {fileID: 1561767652}
@@ -4993,7 +4995,7 @@ MonoBehaviour:
   hspeed: 0
   hacc: 50
   accelerating: 0
-  startingHealth: 3
+  startingHealth: 1
   normalHSpeed: 1000
   dashHSpeed: 1600
   jumpHSpeed: 3500

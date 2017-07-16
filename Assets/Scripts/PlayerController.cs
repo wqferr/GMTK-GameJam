@@ -18,6 +18,8 @@ public class PlayerController : MonoBehaviour
 	#region REFERENCES
 	public GameController gameController;
 
+	public GameObject deathEffects;
+
 	public Text healthText, distanceText;
 
 	public Rigidbody2D rb;
@@ -156,7 +158,9 @@ public class PlayerController : MonoBehaviour
 
 	public void Die()
 	{
-		//PlayDeathAnimation
+		var fx = Instantiate (deathEffects);
+		fx.transform.position = transform.position;
+		renderer.enabled = false;
 		gameController.PlayerDied();
 	}
 
