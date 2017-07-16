@@ -1,0 +1,85 @@
+Title
+
+Shape Them Up
+
+--------------------------------------
+
+Description
+
+Shape Them Up is a side scroller action minimalistic game.
+You control a square in the lower left corner of the screen, trying to avoid or
+destroy the evil pentagons coming your way.
+
+Mechanics:
+  Jump (press up):
+    Can be used anytime while grounded
+    Can be used midair once if refreshed*
+    Height and duration are fixed
+  Dash (press right):
+    Can be used anytime while grounded
+    Can be used midair once if refreshed*
+      If used midair, halts your descent
+    If you collide with an enemy mid dash, the enemy will be destroyed
+  Fast Fall (press down):
+    Can be used midair to halt horizontally
+    If you collide with an enemy mid fast fall, the enemy will be destroyed and
+    you will get a small vertical boost.
+  Combos:
+    A combo is a streak of N enemies you kill before touching the ground again.
+    Every 5 enemies, you will be healed 1HP.
+    Every 10 enemies, if you are at max health, you will increase your max health
+    Also, longer combos net you more points per kill.
+      At 4 enemies or less, the next kill will be worth 1 point.
+      At 9 or less, 2 points.
+      At 14 or less, 3 points.
+    And so on
+  Speed:
+    The more enemies you kill, the faster you go, so you will have to think faster
+    in order to keep these combos going.
+
+* Destroying an enemy with a dash will refresh both your dash and your midair jump,
+while destroying an enemy with a Fast Fall will only refresh your midair dash.
+Touching the ground also refreshes your midair dash, but not your midair jump.
+
+--------------------------------------
+
+How the game matches the theme
+
+All mechanics in the game reinforce one another, and can be used in multiple
+ways by exploring their interactions.
+For example, the midair dash. You could use it anytime after leaving ground,
+but that's not enough to net you some long combos. To position yourself properly,
+you need to think if you want to dash immediately followed by a jump, or if you
+want to jump later to maximize the stall, or if you just want to keep dashing
+through a row of enemies that aligned so politely to meet you.
+That's not even the beggining. You could air dash through an enemy, cancel it
+with your recently acquired midair jump, dash again just for a split second and
+plummet down on an unsuspecting 5-sided regular polygon, use the bounce from the
+hit to position yourself and hit the next enemy with an air dash. And that was
+just a 3 hit combo.
+Not just that, but the fact that healing is tied so closely to comboing means
+the player can't just play safe and stick close to the ground: they HAVE to combo
+in order to heal, so they are forced to use the interactions mentioned above if
+they want to live longer.
+
+--------------------------------------
+
+Platforms
+
+Meant to run on Windows
+
+--------------------------------------
+
+Third party resources
+
+Game engine: Unity3D v5.6.2f1 Personal (64bit)
+Sound effect creation: Bfxr and Audacity
+
+--------------------------------------
+
+Credits
+
+Murilo "Mickey" Bernard Theodoro      Design, Coding
+William "VVilliam" Quelho Ferreira    Design, Sound, Coding
+
+And a special thanks to all the people who have contributed to the tools above.
