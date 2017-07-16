@@ -4719,7 +4719,6 @@ MonoBehaviour:
   combo: 0
   maxCombo: 0
   points: 0
-  distance: 0
 --- !u!1 &1325007448
 GameObject:
   m_ObjectHideFlags: 0
@@ -5105,7 +5104,7 @@ MonoBehaviour:
   gameController: {fileID: 509710264}
   spawnRadius: 350
   despawnX: -1400
-  baseSpawnInterval: 0.5
+  baseSpawnInterval: 0.45
 --- !u!1 &1519222658
 GameObject:
   m_ObjectHideFlags: 0
@@ -5387,7 +5386,7 @@ MonoBehaviour:
   hitHSpeed: 3000
   hitHKnockback: 400
   hitRecoverSpeed: 50
-  speedBoost: 10
+  speedBoost: 15
 --- !u!50 &1561767652
 Rigidbody2D:
   serializedVersion: 4
