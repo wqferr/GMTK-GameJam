@@ -951,7 +951,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -563618888
+  randomSeed: 1836346683
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -4710,9 +4710,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca174da3583d7a24a8ab7d310cec428f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healCombo: 2
+  healCombo: 5
   healthUpCombo: 10
   player: {fileID: 1561767651}
+  spawner: {fileID: 1505754863}
   healingFX: {fileID: 1261077001222972, guid: 83415a25c600ce043ad75b752e1451ec, type: 2}
   killsText: {fileID: 970779719}
   comboText: {fileID: 568415952}
