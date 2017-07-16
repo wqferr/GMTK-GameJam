@@ -5,9 +5,11 @@ using UnityEngine.UI;
 
 public class LeaderboardsBehaviour : MonoBehaviour
 {
+	private bool shouldPopulate;
+
 	public ScoreManager scoreManager;
-	public Text textPrefab; 
-	public RectTransform panel; 
+	public Text textPrefab;
+	public RectTransform panel;
 
 	public float moveDuration;
 	public float activatedHeight;
@@ -36,6 +38,10 @@ public class LeaderboardsBehaviour : MonoBehaviour
 		}
 	}
 
+	public void Start() {
+		shouldPopulate = true;
+	}
+
 	public void Activate()
 	{
 		targetHeight = activatedHeight;
@@ -44,14 +50,25 @@ public class LeaderboardsBehaviour : MonoBehaviour
 
 		move = true;
 
-		//populate the screen
-		List<ScoreManager.Score> highScores = new List<ScoreManager.Score>(scoreManager.GetHighScores(9));
-		foreach(ScoreManager.Score highScore in highScores)
-		{
-			Text nameText = Instantiate (textPrefab) as Text;
-			nameText.text = "bananinha";
-			nameText.transform.SetParent (panel);
-			nameText.gameObject.SetActive (true);
+		if (shouldPopulate) {
+			shouldPopulate = false;
+			//populate the screen
+			List<ScoreManager.Score> highScores = new List<ScoreManager.Score> (scoreManager.GetHighScores (9));
+			foreach (ScoreManager.Score highScore in highScores) {
+				string[] strings = new string[] {
+					highScore.name,
+					highScore.dist.ToString (),
+					highScore.enemiesKilled.ToString (),
+					highScore.maxCombo.ToString ()
+				};
+
+				foreach (string s in strings) {
+					Text nameText = Instantiate (textPrefab) as Text;
+					nameText.text = s;
+					nameText.transform.SetParent (panel);
+					nameText.gameObject.SetActive (true);
+				}
+			}
 		}
 	}
 

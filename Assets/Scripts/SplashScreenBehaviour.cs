@@ -11,4 +11,8 @@ public class SplashScreenBehaviour : MonoBehaviour {
 	public void OnCreditsClick() {
 		SceneManager.LoadScene ("Credits");
 	}
+
+	public void OnClearScoreClick() {
+		PlayerPrefs.DeleteAll ();
+	}
 }

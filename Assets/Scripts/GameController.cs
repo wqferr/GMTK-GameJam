@@ -15,6 +15,7 @@ public enum GameState
 public class GameController : MonoBehaviour {
 
 	public DeathPopupBehaviour deathPopup;
+	public ScoreManager scoreManager;
 
 	private GameState currentState = GameState.START;
 	private GameState previousState = GameState.NULL;
@@ -55,6 +56,8 @@ public class GameController : MonoBehaviour {
 
 	public void PlayerDied()
 	{
+		// TODO read player name
+		scoreManager.AddScore ("name");
 		SwitchState (GameState.DIE);
 	}
 

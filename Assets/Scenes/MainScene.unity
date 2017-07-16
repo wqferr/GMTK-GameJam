@@ -514,6 +514,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deathPopup: {fileID: 1496450454}
+  scoreManager: {fileID: 1305225426}
 --- !u!1 &659421965
 GameObject:
   m_ObjectHideFlags: 0

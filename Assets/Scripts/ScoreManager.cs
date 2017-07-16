@@ -41,10 +41,9 @@ public class ScoreManager : MonoBehaviour
 	}
 
 	public void EndCombo() {
-		// TODO add score
-		combo = 0;
 		if (combo > maxCombo)
 			SetMaxCombo (combo);
+		combo = 0;
 	}
 
 	public void SetMaxCombo(int cmb) {
@@ -60,15 +59,15 @@ public class ScoreManager : MonoBehaviour
 			int i;
 
 			Score[] oldScores = GetHighScores (n);
-
 			if (n < MAX_N)
 				n++;
-			scores = new Score[n];
-			for (i = 0; i < n - 1; i++)
-				scores [i] = oldScores[i];
 
+			scores = new Score[n];
+			for (i = 0; i < oldScores.Length; i++)
+				scores [i] = oldScores[i];
+			
 			// Sorted insert
-			i = n-1;
+			i = oldScores.Length-1;
 			while (i >= 0 && scores [i].dist < s.dist) {
 				scores [i + 1] = scores [i];
 				i--;
@@ -93,8 +92,10 @@ public class ScoreManager : MonoBehaviour
 	}
 
 	public Score[] GetHighScores(int n) {
-		if (PlayerPrefs.HasKey ("n"))
-			n = Mathf.Min (n, PlayerPrefs.GetInt ("n"));
+		if (!PlayerPrefs.HasKey ("n"))
+			return new Score[] { };
+		
+		n = Mathf.Min (n, PlayerPrefs.GetInt ("n"));
 		
 		Score[] scores = new Score[n];
 		for (int i = 0; i < n; i++) {
