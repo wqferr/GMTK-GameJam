@@ -132,7 +132,6 @@ public class PlayerController : MonoBehaviour
 	public void DecreaseHealth(int amount)
 	{
 		health -= amount;
-		Debug.Log ("Health :" + health);
 		if(health <= 0)
 			Die ();
 	}

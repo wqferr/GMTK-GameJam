@@ -14,6 +14,8 @@ public enum GameState
 
 public class GameController : MonoBehaviour {
 
+	public DeathPopupBehaviour deathPopup;
+
 	private GameState currentState = GameState.START;
 	private GameState previousState = GameState.NULL;
 
@@ -43,7 +45,8 @@ public class GameController : MonoBehaviour {
 		case GameState.RUNNING:
 			break;
 		case GameState.DIE:
-			//Show Popup
+			deathPopup.gameObject.SetActive(true);
+			deathPopup.Activate ();
 			break;
 		default:
 			break;
