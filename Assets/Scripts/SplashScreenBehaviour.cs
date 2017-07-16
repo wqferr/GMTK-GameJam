@@ -8,6 +8,10 @@ public class SplashScreenBehaviour : MonoBehaviour {
 		SceneManager.LoadScene("MainScene");
 	}
 
+	public void OnHelpClick() {
+		SceneManager.LoadScene ("Help");
+	}
+
 	public void OnCreditsClick() {
 		SceneManager.LoadScene ("Credits");
 	}
