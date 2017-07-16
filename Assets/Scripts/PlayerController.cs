@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public enum PlayerState
 {
@@ -16,6 +17,8 @@ public class PlayerController : MonoBehaviour
 {
 	#region REFERENCES
 	public GameController gameController;
+
+	public Text healthText, distanceText;
 
 	public Rigidbody2D rb;
 	new public SpriteRenderer renderer;
@@ -156,6 +159,7 @@ public class PlayerController : MonoBehaviour
 	public void DecreaseHealth(int amount)
 	{
 		health -= amount;
+		healthText.text = health + "/" + startingHealth;
 		if(health <= 0)
 			Die ();
 	}
@@ -171,6 +175,8 @@ public class PlayerController : MonoBehaviour
 	void Start ()
 	{
 		health = startingHealth;
+		healthText.text = health + "/" + startingHealth;
+
 		initialX = transform.position.x;
 		groundHeight = transform.position.y;
 		RefreshAbilities ();
@@ -215,7 +221,9 @@ public class PlayerController : MonoBehaviour
 				accelerating = false;
 			}
 		}
+
 		score.distance += hspeed * Time.fixedDeltaTime;
+		distanceText.text = "Distance: " + score.distance;
 
 		if (recoiling) {
 			if (transform.position.x > targetX) {

@@ -1,9 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ScoreManager : MonoBehaviour
 {
+	public Text killsText, comboText;
 
 	public class Score {
 		public int maxCombo;
@@ -28,6 +30,8 @@ public class ScoreManager : MonoBehaviour
 	public int enemiesKilled;
 	public float distance;
 
+	private float timer = 0.0f;
+
 	public void Start() {
 		combo = 0;
 		maxCombo = 0;
@@ -35,12 +39,17 @@ public class ScoreManager : MonoBehaviour
 		distance = 0;
 	}
 
-	public void Hit() {
+	public void Hit()
+	{
 		enemiesKilled++;
 		combo++;
+
+		killsText.text = "Kills: " + enemiesKilled;
+		comboText.text = "Combo: " + combo;
 	}
 
-	public void EndCombo() {
+	public void EndCombo()
+	{
 		if (combo > maxCombo)
 			SetMaxCombo (combo);
 		combo = 0;
