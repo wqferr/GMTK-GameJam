@@ -1,11 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class LeaderboardsBehaviour : MonoBehaviour {
+public class LeaderboardsBehaviour : MonoBehaviour
+{
+	public ScoreManager scoreManager;
+	public Text textPrefab; 
+	public RectTransform panel; 
 
-	public float targetHeight;
 	public float moveDuration;
+	public float activatedHeight;
+	private float targetHeight;
 
 	private bool move;
 	private float timeMoving;
@@ -32,8 +38,29 @@ public class LeaderboardsBehaviour : MonoBehaviour {
 
 	public void Activate()
 	{
-		timeMoving = 0.0f;
+		targetHeight = activatedHeight;
 		initialHeight = transform.position.y;
+		timeMoving = 0.0f;
+
+		move = true;
+
+		//populate the screen
+		List<ScoreManager.Score> highScores = new List<ScoreManager.Score>(scoreManager.GetHighScores(9));
+		foreach(ScoreManager.Score highScore in highScores)
+		{
+			Text nameText = Instantiate (textPrefab) as Text;
+			nameText.text = "bananinha";
+			nameText.transform.SetParent (panel);
+			nameText.gameObject.SetActive (true);
+		}
+	}
+
+	public void Deactivate()
+	{
+		targetHeight = initialHeight;
+		initialHeight = transform.position.y;
+		timeMoving = 0.0f;
+
 		move = true;
 	}
 }
