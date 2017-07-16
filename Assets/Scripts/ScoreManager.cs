@@ -46,15 +46,23 @@ public class ScoreManager : MonoBehaviour
 		enemiesKilled++;
 		combo++;
 
+		AudioSource.PlayClipAtPoint (player.killSFX, Camera.main.transform.position, 0.8f);
+
+		bool c = false;
 		if (combo % healCombo == 0) {
 			print ("combo");
 			if (player.health + 1 <= player.startingHealth) {
 				player.IncreaseHealth (1);
 			}
+			c = true;
 		}
 		if (combo % healthUpCombo == 0) {
 			if (player.health == player.startingHealth)
 				player.IncreaseHealth (1);
+			c = true;
+		}
+		if (c) {
+			AudioSource.PlayClipAtPoint (player.comboSFX, Camera.main.transform.position);
 		}
 
 		killsText.text = "Kills: " + enemiesKilled;

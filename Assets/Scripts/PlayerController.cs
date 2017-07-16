@@ -29,6 +29,15 @@ public class PlayerController : MonoBehaviour
 	public Sprite normalSprite;
 	public Sprite dashSprite;
 	public Sprite fastFallSprite;
+
+	#region SOUNDS
+	public AudioClip dashSFX;
+	public AudioClip fallSFX;
+	public AudioClip hitSFX;
+	public AudioClip deathSFX;
+	public AudioClip killSFX;
+	public AudioClip comboSFX;
+	#endregion
 	#endregion
 
 	#region ATTRIBUTES
@@ -130,15 +139,18 @@ public class PlayerController : MonoBehaviour
 			StartFalling ();
 			break;
 		case PlayerState.FASTFALLING: //fastFall
+			AudioSource.PlayClipAtPoint(fallSFX, Camera.main.transform.position);
 			StartFastFalling ();
 			hspeed = fallHSpeed;
 			break;
 		case PlayerState.DASHING:
 			Dash ();
+			AudioSource.PlayClipAtPoint (dashSFX, Camera.main.transform.position, 0.7f);
 			if(currentState != PlayerState.GROUNDED)
 				hasDash = false;
 			break;
 		case PlayerState.HIT:
+			AudioSource.PlayClipAtPoint (hitSFX, Camera.main.transform.position, 0.6f);
 			DecreaseHealth (1);
 			recoiling = true;
 			hitstun = true;
@@ -158,8 +170,9 @@ public class PlayerController : MonoBehaviour
 
 	public void Die()
 	{
-		var fx = Instantiate (deathEffects);
-		fx.transform.position = transform.position;
+		AudioSource.PlayClipAtPoint (deathSFX, Camera.main.transform.position);
+		var vfx = Instantiate (deathEffects);
+		vfx.transform.position = transform.position;
 		renderer.enabled = false;
 		gameController.PlayerDied();
 	}
