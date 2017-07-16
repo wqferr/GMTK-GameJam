@@ -147,7 +147,7 @@ public class PlayerController : MonoBehaviour
 			break;
 		case PlayerState.DASHING:
 			Dash ();
-			AudioSource.PlayClipAtPoint (dashSFX, Camera.main.transform.position, 0.7f);
+			AudioSource.PlayClipAtPoint (dashSFX, Camera.main.transform.position);
 			if(currentState != PlayerState.GROUNDED)
 				hasDash = false;
 			break;
